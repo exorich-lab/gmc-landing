@@ -3,473 +3,1919 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Глубокский Мебельный Центр | Производитель мебели</title>
+    <title>Глубокский Мебельный Центр — Контрактный производитель мебели</title>
+    <meta name="description" content="Производство корпусной мебели для школ, офисов, общежитий и гостиниц. Собственное производство в Беларуси. Работаем с организациями оптом.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2c3e50; /* Темно-синий для надежности */
-            --accent: #e67e22; /* Оранжевый для энергии */
-            --background: #f8f9fa;
-            --text: #333;
-            --light: #fff;
-            --shadow: rgba(0,0,0,0.1);
-        }
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --accent: #c8956c;
+            --accent-hover: #b07d56;
+            --accent-light: rgba(200, 149, 108, 0.1);
+            --bg: #faf9f7;
+            --bg-white: #ffffff;
+            --bg-dark: #0f0f1a;
+            --text: #2d2d3a;
+            --text-light: #6b6b7b;
+            --text-muted: #9999a8;
+            --border: rgba(0, 0, 0, 0.06);
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.12);
+            --radius-sm: 0.75rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --radius-xl: 2rem;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'DM Sans', -apple-system, sans-serif;
             color: var(--text);
-            line-height: 1.6;
-            background: var(--background);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        .section {
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+
+        /* ============ HEADER ============ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: transparent;
         }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
         }
-        .hero {
-            background: linear-gradient(135deg, var(--primary), #34495e);
-            color: var(--light);
-            text-align: center;
-            padding: 120px 0;
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: var(--accent);
-            color: var(--light);
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s;
+            color: #fff;
+            transition: var(--transition);
         }
-        .btn:hover {
-            background: #d35400;
-            transform: translateY(-2px);
-        }
-        .problems {
-            background: var(--light);
-        }
-        .problems h2 {
-            text-align: center;
-            margin-bottom: 50px;
+
+        .header.scrolled .logo {
             color: var(--primary);
         }
-        .problems .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: var(--light);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px var(--shadow);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .advantages {
-            background: var(--background);
-        }
-        .advantages .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .advantage {
-            text-align: center;
-        }
-        .advantage .icon {
-            width: 60px;
-            height: 60px;
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
             background: var(--accent);
-            border-radius: 50%;
-            margin: 0 auto 20px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
-            font-size: 2rem;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
         }
-        .services {
-            background: var(--light);
+
+        .logo-text {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
         }
-        .services .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.7;
+            display: block;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
-        .service {
-            background: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
-        .service img {
+
+        .nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav a:hover::after {
             width: 100%;
-            height: 200px;
+        }
+
+        .header.scrolled .nav a {
+            color: var(--text-light);
+        }
+
+        .header.scrolled .nav a:hover {
+            color: var(--text);
+        }
+
+        .nav a:hover {
+            color: #fff;
+        }
+
+        .header-cta {
+            padding: 10px 24px;
+            background: var(--accent);
+            color: #fff !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .header-cta::after {
+            display: none !important;
+        }
+
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            position: absolute;
+            left: 8px;
+            transition: var(--transition);
+        }
+
+        .header.scrolled .mobile-toggle span {
+            background: var(--text);
+        }
+
+        .mobile-toggle span:nth-child(1) { top: 12px; }
+        .mobile-toggle span:nth-child(2) { top: 19px; }
+        .mobile-toggle span:nth-child(3) { top: 26px; }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #1a2a4a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80') center/cover no-repeat;
+            opacity: 0.12;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(200, 149, 108, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 140px 0 100px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(200, 149, 108, 0.15);
+            border: 1px solid rgba(200, 149, 108, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 32px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), #e8c4a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 48px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(200, 149, 108, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-dark {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-dark:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(26, 26, 46, 0.35);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-stat {
+            color: #fff;
+        }
+
+        .hero-stat-value {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .hero-stat-value span {
+            color: var(--accent);
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-dark {
+            background: var(--bg-dark);
+            color: #fff;
+        }
+
+        .section-white {
+            background: var(--bg-white);
+        }
+
+        .section-accent {
+            background: linear-gradient(135deg, var(--accent), #b07d56);
+            color: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 72px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .section-dark .section-label {
+            color: var(--accent);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .section-accent .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ============ PROBLEMS ============ */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .problem-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ============ SOLUTION / ADVANTAGES ============ */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .advantage-card {
+            display: flex;
+            gap: 24px;
+            padding: 36px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .advantage-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(200, 149, 108, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .advantage-num {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+
+        .advantage-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .advantage-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ============ PRODUCTS ============ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .product-img {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-body {
+            padding: 28px;
+        }
+
+        .product-body h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .product-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .product-list li {
+            padding: 6px 14px;
+            background: var(--bg);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ============ STATS ============ */
+        .stats-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(200, 149, 108, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .stat-value {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ============ ABOUT ============ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
-        .service h3 {
-            padding: 20px;
-            background: var(--primary);
-            color: var(--light);
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            pointer-events: none;
         }
-        .service ul {
-            padding: 20px;
-            list-style: none;
+
+        .about-content h2 {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
         }
-        .service li {
-            margin-bottom: 10px;
+
+        .about-content p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
-        .stats {
-            background: var(--primary);
-            color: var(--light);
-            text-align: center;
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
         }
-        .stats .grid {
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .about-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-feature-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .about-feature span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* ============ PROCESS ============ */
+        .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
         }
-        .stat {
-            font-size: 2rem;
+
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), rgba(200, 149, 108, 0.2));
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-num {
+            width: 64px;
+            height: 64px;
+            background: var(--bg-white);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--accent);
+            transition: all 0.4s;
+        }
+
+        .process-step:hover .process-num {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .process-step h3 {
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 10px;
         }
-        .about {
-            background: var(--background);
-            text-align: center;
+
+        .process-step p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
-        .faq {
-            background: var(--light);
+
+        /* ============ FAQ ============ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .faq .question {
-            margin-bottom: 20px;
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
         }
-        .faq .question h4 {
+
+        .faq-question {
+            width: 100%;
+            padding: 28px 0;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             cursor: pointer;
-            padding: 15px;
-            background: var(--background);
-            border-radius: 5px;
-            margin-bottom: 10px;
+            text-align: left;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: var(--transition);
         }
-        .faq .answer {
-            display: none;
-            padding: 15px;
+
+        .faq-question:hover {
+            color: var(--accent);
         }
-        .cta {
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.4s;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .faq-icon::before {
+            width: 12px;
+            height: 1.5px;
+        }
+
+        .faq-icon::after {
+            width: 1.5px;
+            height: 12px;
+        }
+
+        .faq-item.active .faq-icon {
             background: var(--accent);
-            color: var(--light);
-            text-align: center;
-            padding: 80px 0;
+            border-color: var(--accent);
+            transform: rotate(45deg);
         }
-        .cta h2 {
+
+        .faq-item.active .faq-icon::before,
+        .faq-item.active .faq-icon::after {
+            background: #fff;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-inner {
+            padding: 0 0 28px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ============ CTA ============ */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 50%;
+            height: 160%;
+            background: radial-gradient(ellipse, rgba(200, 149, 108, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.03em;
             margin-bottom: 20px;
         }
-        .cta p {
-            margin-bottom: 40px;
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.15rem;
+            margin-bottom: 48px;
+            line-height: 1.7;
         }
-        .contacts {
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 64px;
+        }
+
+        .cta-contacts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-contact {
+            padding: 32px 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
             text-align: center;
+            transition: all 0.4s;
         }
-        .contact-item {
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
+
+        .cta-contact:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(200, 149, 108, 0.3);
+            transform: translateY(-4px);
         }
-        .contact-item a {
-            color: var(--light);
+
+        .cta-contact-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .cta-contact a,
+        .cta-contact p {
+            color: #fff;
             text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: var(--transition);
         }
-        footer {
-            background: var(--primary);
-            color: var(--light);
-            text-align: center;
-            padding: 40px 0;
+
+        .cta-contact a:hover {
+            color: var(--accent);
         }
-        footer .grid {
+
+        .cta-socials {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .cta-social {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-social:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--bg-dark);
+            padding: 72px 0 40px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 56px;
         }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-legal {
+            padding-top: 32px;
+            border-top: 1px solid var(--border-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-legal p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent);
+        }
+
+        /* ============ MOBILE CTA ============ */
+        .mobile-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 12px 16px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: none;
+            gap: 8px;
+        }
+
+        .mobile-cta a {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .mobile-cta .btn-call {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .mobile-cta .btn-tg {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ============ ANIMATIONS ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .problems-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .process-grid::before {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+            .section {
+                padding: 80px 0;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-content {
+                padding: 120px 0 80px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .hero-stat {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .hero-stat-value {
+                font-size: 2rem;
+            }
+
+            .problems-grid,
+            .advantages-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-value {
+                font-size: 2.25rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .cta-contacts {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mobile-cta {
+                display: flex;
+            }
+
+            body {
+                padding-bottom: 72px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .section {
+                padding: 64px 0;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
-            .section {
-                padding: 60px 0;
+
+            .section-title {
+                font-size: 1.75rem;
             }
-        }
-        .fixed-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .fixed-cta {
-                display: block;
+
+            .product-img {
+                height: 200px;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="#hero">Глубокский Мебельный Центр</a>
-            <a href="#services">Каталог</a>
-            <a href="#about">О компании</a>
-            <a href="#contacts">Контакты</a>
-        </nav>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <div class="logo-icon">GMC</div>
+                    <div>
+                        <span class="logo-text">Глубокский Мебельный Центр</span>
+                        <span class="logo-sub">Контрактное производство</span>
+                    </div>
+                </a>
+                <nav class="nav">
+                    <a href="#products">Продукция</a>
+                    <a href="#advantages">Преимущества</a>
+                    <a href="#about">О компании</a>
+                    <a href="#faq">Вопросы</a>
+                    <a href="#contacts" class="header-cta">Связаться</a>
+                </nav>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <section id="hero" class="section hero visible">
+    <!-- HERO -->
+    <section class="hero" id="hero">
         <div class="container">
-            <h1>Мебель для школ, офисов и общежитий от производителя</h1>
-            <p>Серийная мебель высокого качества по доступным ценам. Собственное производство в Беларуси.</p>
-            <a href="#cta" class="btn">Получить каталог и прайс</a>
-        </div>
-    </section>
-
-    <section id="problems" class="section problems">
-        <div class="container">
-            <h2>Проблемы, с которыми сталкиваются наши клиенты</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Некачественная мебель</h3>
-                    <p>Школы и офисы нуждаются в прочной мебели, которая выдержит ежедневную нагрузку.</p>
+            <div class="hero-content">
+                <div class="hero-badge">Белорусский производитель</div>
+                <h1>Мебель для <span>школ, офисов и&nbsp;общежитий</span> напрямую с&nbsp;производства</h1>
+                <p class="hero-subtitle">Полный цикл изготовления — от проектирования до отгрузки. Без посредников. С контролем качества на каждом этапе и ценами, которые укладываются в бюджет.</p>
+                <div class="hero-actions">
+                    <a href="#contacts" class="btn btn-primary">Получить каталог и прайс</a>
+                    <a href="#products" class="btn btn-outline">Смотреть продукцию</a>
                 </div>
-                <div class="card">
-                    <h3>Высокие цены</h3>
-                    <p>Дорогие поставщики не позволяют уложиться в бюджет образовательных учреждений.</p>
-                </div>
-                <div class="card">
-                    <h3>Долгие сроки поставки</h3>
-                    <p>Заказы на мебель часто задерживаются, что мешает планированию.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">1000<span> м²</span></div>
+                        <div class="hero-stat-label">Производственных площадей</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">4<span>+</span></div>
+                        <div class="hero-stat-label">Категории продукции</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">100<span>%</span></div>
+                        <div class="hero-stat-label">Собственное производство</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="solution" class="section advantages">
+    <!-- PROBLEMS -->
+    <section class="section section-white" id="problems">
         <div class="container">
-            <h2>Как мы решаем эти проблемы</h2>
-            <div class="grid">
-                <div class="advantage">
-                    <div class="icon">🏭</div>
-                    <h3>Собственное производство</h3>
-                    <p>Полный цикл от проектирования до отгрузки с контролем качества на каждом этапе.</p>
+            <div class="section-header reveal">
+                <span class="section-label">Знакомые ситуации?</span>
+                <h2 class="section-title">С чем сталкиваются закупщики мебели</h2>
+                <p class="section-subtitle">Мы знаем боли наших клиентов — и создали производство, которое их решает</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card reveal reveal-delay-1">
+                    <div class="problem-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <h3>Мебель не выдерживает нагрузку</h3>
+                    <p>Дешёвые столы шатаются через месяц, шкафы рассыхаются, стулья ломаются. Школам и офисам приходится менять мебель каждые 2-3 года вместо положенных 10.</p>
                 </div>
-                <div class="advantage">
-                    <div class="icon">💰</div>
-                    <h3>Гибкие цены</h3>
-                    <p>Оптовые скидки и отсутствие посредников позволяют снизить затраты клиентов.</p>
+                <div class="problem-card reveal reveal-delay-2">
+                    <div class="problem-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Цены не укладываются в бюджет</h3>
+                    <p>Посредники накручивают 30-50%. Образовательные учреждения и организации вынуждены либо переплачивать, либо сокращать объём закупки.</p>
                 </div>
-                <div class="advantage">
-                    <div class="icon">⏱️</div>
-                    <h3>Быстрая поставка</h3>
-                    <p>Регулярное обновление ассортимента и складские запасы обеспечивают своевременные поставки.</p>
+                <div class="problem-card reveal reveal-delay-3">
+                    <div class="problem-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Сроки срываются постоянно</h3>
+                    <p>Производство обещает — не делает. Поставщики переносят даты. Начало учебного года на носу, а мебель ещё не приехала. Знакомо?</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section services">
+    <!-- ADVANTAGES -->
+    <section class="section section-dark" id="advantages">
         <div class="container">
-            <h2>Наша продукция</h2>
-            <div class="grid">
-                <div class="service">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мебель для дома">
-                    <h3>Мебель для дома</h3>
-                    <ul>
-                        <li>Письменные столы</li>
-                        <li>Шкафы</li>
-                        <li>Обеденные столы в стиле Лофт</li>
+            <div class="section-header reveal">
+                <span class="section-label">Почему мы</span>
+                <h2 class="section-title">Как мы решаем эти проблемы</h2>
+                <p class="section-subtitle">Собственное производство в Беларуси — это контроль, качество и честная цена</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card reveal reveal-delay-1">
+                    <div class="advantage-num">01</div>
+                    <div class="advantage-content">
+                        <h3>Полный цикл на своём производстве</h3>
+                        <p>Проектируем, изготавливаем, контролируем качество и отгружаем — всё своими руками. Никаких субподрядчиков, которые подводят.</p>
+                    </div>
+                </div>
+                <div class="advantage-card reveal reveal-delay-2">
+                    <div class="advantage-num">02</div>
+                    <div class="advantage-content">
+                        <h3>Цены без посредников</h3>
+                        <p>Вы работаете напрямую с заводом. Без наценок дилеров, без комиссий агентов. Оптовые скидки и гибкое ценообразование для постоянных партнёров.</p>
+                    </div>
+                </div>
+                <div class="advantage-card reveal reveal-delay-3">
+                    <div class="advantage-num">03</div>
+                    <div class="advantage-content">
+                        <h3>Склад готовой продукции</h3>
+                        <p>600 м² складских помещений + собственный склад сырья. Популярные позиции всегда в наличии. Отгрузка — без задержек.</p>
+                    </div>
+                </div>
+                <div class="advantage-card reveal reveal-delay-4">
+                    <div class="advantage-num">04</div>
+                    <div class="advantage-content">
+                        <h3>Серийное производство, не кустарщина</h3>
+                        <p>1000 м² производственных площадей, отлаженные процессы, регулярное обновление ассортимента. Мы делаем мебель потоком — стабильно и предсказуемо.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Каталог</span>
+                <h2 class="section-title">Что мы производим</h2>
+                <p class="section-subtitle">Четыре ключевых направления — от школьных парт до офисных гарнитуров</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card reveal reveal-delay-1">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Мебель для дома" loading="lazy">
+                        <div class="product-overlay">
+                            <span class="product-tag">Каталог</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Мебель для дома</h3>
+                        <ul class="product-list">
+                            <li>Письменные столы</li>
+                            <li>Шкафы</li>
+                            <li>Обеденные столы Лофт</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card reveal reveal-delay-2">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="Ученическая мебель" loading="lazy">
+                        <div class="product-overlay">
+                            <span class="product-tag">Для школ</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Ученическая мебель</h3>
+                        <ul class="product-list">
+                            <li>Столы для столовых</li>
+                            <li>Ученические столы</li>
+                            <li>Стулья</li>
+                            <li>Комплекты для классов</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card reveal reveal-delay-3">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Офисная мебель" loading="lazy">
+                        <div class="product-overlay">
+                            <span class="product-tag">Для бизнеса</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Офисная мебель</h3>
+                        <ul class="product-list">
+                            <li>Письменные столы</li>
+                            <li>Шкафы для документов</li>
+                            <li>Тумбы</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-card reveal reveal-delay-4">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80" alt="Мебель для общежитий" loading="lazy">
+                        <div class="product-overlay">
+                            <span class="product-tag">Для проживания</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Мебель для общежитий и гостиниц</h3>
+                        <ul class="product-list">
+                            <li>Кровати</li>
+                            <li>Тумбочки</li>
+                            <li>Шкафы и антресоли</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal reveal-delay-1">
+                    <div class="stat-value">1000 м²</div>
+                    <div class="stat-label">Производственных помещений</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-2">
+                    <div class="stat-value">600 м²</div>
+                    <div class="stat-label">Крытых складских помещений</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-3">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Направления продукции</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-4">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Полный цикл производства</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section section-white" id="process">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Как мы работаем</span>
+                <h2 class="section-title">От заявки до отгрузки — 4 шага</h2>
+                <p class="section-subtitle">Прозрачный процесс, понятные сроки, никаких сюрпризов</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-num">1</div>
+                    <h3>Заявка</h3>
+                    <p>Вы звоните или пишете — мы высылаем каталог и прайс-лист. Обсуждаем объём и детали.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="process-num">2</div>
+                    <h3>Согласование</h3>
+                    <p>Подбираем позиции, фиксируем цену и сроки. Подписываем договор.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="process-num">3</div>
+                    <h3>Производство</h3>
+                    <p>Изготавливаем мебель на собственном производстве. Контроль качества на каждом этапе.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-4">
+                    <div class="process-num">4</div>
+                    <h3>Отгрузка</h3>
+                    <p>Упаковываем и отправляем. Организуем доставку по Беларуси и за пределы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" alt="Производство мебели" loading="lazy">
+                </div>
+                <div class="about-content reveal reveal-delay-2">
+                    <span class="section-label">О компании</span>
+                    <h2>Производим мебель, которой доверяют</h2>
+                    <p>ООО «Глубокский мебельный центр» — белорусский производитель и поставщик серийной мебели для общежитий, школ и офисов. Мы производим и регулярно обновляем ассортимент современной и стильной мебели.</p>
+                    <p>Собственное производство в Республике Беларусь позволяет вести гибкую политику ценообразования — наши оптовые клиенты экономят до 30% по сравнению с закупкой через посредников.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Полный цикл: проектирование → производство → отгрузка</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Поэтапный контроль качества на каждом этапе</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Работаем с организациями — оптовые поставки</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-white" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Вопросы и ответы</span>
+                <h2 class="section-title">Частые вопросы</h2>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как получить каталог и прайс-лист?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Позвоните нам, напишите в Telegram или отправьте email — и мы вышлем актуальный каталог с ценами в течение рабочего дня. Никаких обязательств: смотрите, сравнивайте, принимайте решение.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Какие сроки изготовления заказа?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Зависит от объёма и ассортимента. Популярные позиции есть на складе — отгружаем за 1-3 дня. Серийные заказы под изготовление — от 2 до 4 недель. Точные сроки фиксируем в договоре.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Работаете ли вы с физическими лицами?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Нет, мы специализируемся на оптовых поставках для организаций: школы, офисы, общежития, гостиницы, государственные учреждения. Индивидуальные заказы не принимаем — это позволяет держать низкие цены для оптовиков.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как организована доставка?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Доставляем по всей Беларуси и за её пределы. Условия доставки обсуждаем индивидуально — зависит от объёма заказа и региона. Самовывоз со склада в Глубокском районе тоже возможен.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Какие гарантии на продукцию?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Мы контролируем качество на каждом этапе — от закупки сырья до упаковки готовой мебели. Вся продукция соответствует стандартам Республики Беларусь. Гарантийные условия прописываем в договоре.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Можно ли заказать мебель по индивидуальным размерам?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Мы специализируемся на серийном производстве — это позволяет держать низкие цены и быстрые сроки. Индивидуальные заказы не принимаем. Но в нашем каталоге достаточно позиций, чтобы закрыть потребности любого учреждения.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contacts">
+        <div class="container">
+            <div class="cta-content reveal">
+                <span class="section-label" style="color: var(--accent);">Начнём сотрудничество</span>
+                <h2>Получите каталог и прайс-лист сегодня</h2>
+                <p>Свяжитесь с нами любым удобным способом. Ответим в течение рабочего дня, вышлем полную информацию и поможем подобрать мебель под ваш бюджет.</p>
+                <div class="cta-buttons">
+                    <a href="tel:+375296969399" class="btn btn-primary">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Позвонить
+                    </a>
+                    <a href="mailto:info@1gmc.by" class="btn btn-outline">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Написать на email
+                    </a>
+                </div>
+                <div class="cta-contacts">
+                    <div class="cta-contact">
+                        <div class="cta-contact-label">Телефон</div>
+                        <a href="tel:+375296969399">+375 29 696-93-99</a><br>
+                        <a href="tel:+375296840030">+375 29 684-00-30</a>
+                    </div>
+                    <div class="cta-contact">
+                        <div class="cta-contact-label">Email</div>
+                        <a href="mailto:info@1gmc.by">info@1gmc.by</a>
+                    </div>
+                    <div class="cta-contact">
+                        <div class="cta-contact-label">Адрес</div>
+                        <p>211790 Витебская обл., Глубокский р-н, Озерецкий с/с, д. Обруб Березвечский, ул. Глубокская, 1а</p>
+                        <div class="cta-socials">
+                            <a href="https://t.me/Glubokskiy_mebelnyi_centr" class="cta-social" target="_blank" rel="noopener">TG</a>
+                            <a href="https://instagram.com/1gmc_glubokoe" class="cta-social" target="_blank" rel="noopener">IG</a>
+                            <a href="viber://chat?number=%2B375296969399" class="cta-social">VB</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" style="color: #fff;">
+                        <div class="logo-icon">GMC</div>
+                        <div>
+                            <span class="logo-text">Глубокский Мебельный Центр</span>
+                            <span class="logo-sub">Контрактное производство</span>
+                        </div>
+                    </a>
+                    <p>Белорусский производитель серийной мебели для школ, офисов, общежитий и гостиниц. Полный цикл от проектирования до отгрузки.</p>
+                </div>
+                <div>
+                    <h4>Продукция</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">Мебель для дома</a></li>
+                        <li><a href="#products">Ученическая мебель</a></li>
+                        <li><a href="#products">Офисная мебель</a></li>
+                        <li><a href="#products">Для общежитий</a></li>
                     </ul>
                 </div>
-                <div class="service">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ученическая мебель">
-                    <h3>Ученическая мебель</h3>
-                    <ul>
-                        <li>Столы для школьной столовой</li>
-                        <li>Ученические столы и стулья</li>
-                        <li>Комплекты для классов</li>
+                <div>
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="#advantages">Преимущества</a></li>
+                        <li><a href="#process">Как мы работаем</a></li>
+                        <li><a href="#about">О компании</a></li>
+                        <li><a href="#faq">Вопросы</a></li>
                     </ul>
                 </div>
-                <div class="service">
-                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Офисная мебель">
-                    <h3>Офисная мебель</h3>
-                    <ul>
-                        <li>Письменные столы</li>
-                        <li>Шкафы для документов</li>
-                        <li>Тумбы</li>
-                    </ul>
-                </div>
-                <div class="service">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мебель для общежитий">
-                    <h3>Мебель для общежитий и гостиниц</h3>
-                    <ul>
-                        <li>Кровати</li>
-                        <li>Тумбочки</li>
-                        <li>Шкафы и антресоли</li>
+                <div>
+                    <h4>Контакты</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+375296969399">+375 29 696-93-99</a></li>
+                        <li><a href="tel:+375296840030">+375 29 684-00-30</a></li>
+                        <li><a href="mailto:info@1gmc.by">info@1gmc.by</a></li>
+                        <li><a href="https://1gmc.by" target="_blank" rel="noopener">1gmc.by</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="stats" class="section stats">
-        <div class="container">
-            <h2>Наши достижения</h2>
-            <div class="grid">
-                <div>
-                    <div class="stat">1000 м²</div>
-                    <p>Производственных помещений</p>
-                </div>
-                <div>
-                    <div class="stat">600 м²</div>
-                    <p>Крытых складских помещений</p>
-                </div>
-                <div>
-                    <div class="stat">2023</div>
-                    <p>Год запуска склада сырья</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section about">
-        <div class="container">
-            <h2>О компании</h2>
-            <p>ООО «Глубокский мебельный центр» – белорусский производитель и поставщик серийной мебели для общежитий, школ и офисов. Мы производим полный цикл изготовления мебели от проектирования до отгрузки, что позволяет осуществлять поэтапный контроль качества.</p>
-            <p>Обращаем внимание, что по индивидуальным заказам и с физическими лицами предприятие не работает.</p>
-        </div>
-    </section>
-
-    <section id="faq" class="section faq">
-        <div class="container">
-            <h2>Частые вопросы</h2>
-            <div class="question">
-                <h4>Как оформить заказ?</h4>
-                <div class="answer">Свяжитесь с нами по телефону или email, и мы вышлем каталог и прайс-лист.</div>
-            </div>
-            <div class="question">
-                <h4>Какие сроки производства?</h4>
-                <div class="answer">Зависит от объема заказа, обычно 2-4 недели.</div>
-            </div>
-            <div class="question">
-                <h4>Работаете ли с розничными покупателями?</h4>
-                <div class="answer">Нет, мы специализируемся на оптовых поставках для организаций.</div>
-            </div>
-            <div class="question">
-                <h4>Есть ли доставка?</h4>
-                <div class="answer">Да, организуем доставку по Беларуси и за ее пределы.</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cta" class="section cta">
-        <div class="container">
-            <h2>Готовы к сотрудничеству?</h2>
-            <p>Свяжитесь с нами сегодня и получите выгодное предложение на мебель для вашего учреждения.</p>
-            <div class="contacts">
-                <div class="contact-item">
-                    <h3>Телефон</h3>
-                    <a href="tel:+375296969399">+375 29 696-93-99</a><br>
-                    <a href="tel:+375296840030">+375 29 684-00-30</a>
-                </div>
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <a href="mailto:info@1gmc.by">info@1gmc.by</a>
-                </div>
-                <div class="contact-item">
-                    <h3>Адрес</h3>
-                    <p>211790 Витебская обл., Глубокский р-н, Озерецкий с/с, д. Обруб Березвечский, ул. Глубокская, 1а</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Соцсети</h3>
-                    <a href="https://t.me/Glubokskiy_mebelnyi_centr">Telegram</a><br>
-                    <a href="https://instagram.com/1gmc_glubokoe">Instagram</a><br>
-                    <a href="viber://chat?number=%2B375296969399">Viber</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="grid">
-                <div>
-                    <h3>Глубокский Мебельный Центр</h3>
-                    <p>Производитель мебели с 2010 года</p>
-                </div>
-                <div>
-                    <h3>Контакты</h3>
-                    <p>+375 29 696-93-99<br>info@1gmc.by</p>
-                </div>
-                <div>
-                    <h3>Юридическая информация</h3>
-                    <p>УНП 391540875</p>
-                </div>
+            <div class="footer-legal">
+                <p>ООО «Глубокский мебельный центр» УНП 391540875</p>
+                <p>Р/с BY03 BAPB 3012 7312 5001 0000 0000 в ЦБУ № 239 ОАО «Белагропромбанк»</p>
+                <p>2025 GMC. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
-    <a href="tel:+375296969399" class="btn fixed-cta">Позвонить</a>
+    <!-- MOBILE CTA -->
+    <div class="mobile-cta">
+        <a href="tel:+375296969399" class="btn-call">Позвонить</a>
+        <a href="https://t.me/Glubokskiy_mebelnyi_centr" class="btn-tg" target="_blank" rel="noopener">Telegram</a>
+    </div>
 
     <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                    faqItem.querySelector('.faq-answer').style.maxHeight = '0';
+                });
+
+                // Open clicked if it was closed
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
                 }
             });
         });
 
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        document.querySelectorAll('.faq .question h4').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const stats = document.querySelectorAll('.stat-value');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const text = el.textContent;
+                        const numMatch = text.match(/(\d+)/);
+                        if (numMatch) {
+                            const target = parseInt(numMatch[1]);
+                            const suffix = text.replace(numMatch[1], '');
+                            let current = 0;
+                            const increment = target / 40;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    current = target;
+                                    clearInterval(timer);
+                                }
+                                el.textContent = Math.floor(current) + suffix;
+                            }, 30);
+                        }
+                        statsObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            stats.forEach(stat => statsObserver.observe(stat));
+        }
+
+        animateCounters();
     </script>
 </body>
 </html>
