@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глубокский Мебельный Центр | Производитель мебели</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50; /* Темно-синий для надежности */
+            --accent: #e67e22; /* Оранжевый для энергии */
+            --background: #f8f9fa;
+            --text: #333;
+            --light: #fff;
+            --shadow: rgba(0,0,0,0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--background);
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #34495e);
+            color: var(--light);
+            text-align: center;
+            padding: 120px 0;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+        }
+        .problems {
+            background: var(--light);
+        }
+        .problems h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+        .problems .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .advantages {
+            background: var(--background);
+        }
+        .advantages .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .advantage {
+            text-align: center;
+        }
+        .advantage .icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 2rem;
+        }
+        .services {
+            background: var(--light);
+        }
+        .services .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        .service img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service h3 {
+            padding: 20px;
+            background: var(--primary);
+            color: var(--light);
+        }
+        .service ul {
+            padding: 20px;
+            list-style: none;
+        }
+        .service li {
+            margin-bottom: 10px;
+        }
+        .stats {
+            background: var(--primary);
+            color: var(--light);
+            text-align: center;
+        }
+        .stats .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .about {
+            background: var(--background);
+            text-align: center;
+        }
+        .faq {
+            background: var(--light);
+        }
+        .faq .question {
+            margin-bottom: 20px;
+        }
+        .faq .question h4 {
+            cursor: pointer;
+            padding: 15px;
+            background: var(--background);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .faq .answer {
+            display: none;
+            padding: 15px;
+        }
+        .cta {
+            background: var(--accent);
+            color: var(--light);
+            text-align: center;
+            padding: 80px 0;
+        }
+        .cta h2 {
+            margin-bottom: 20px;
+        }
+        .cta p {
+            margin-bottom: 40px;
+        }
+        .contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .contact-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .contact-item a {
+            color: var(--light);
+            text-decoration: none;
+        }
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            text-align: center;
+            padding: 40px 0;
+        }
+        footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 60px 0;
+            }
+        }
+        .fixed-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .fixed-cta {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#hero">Глубокский Мебельный Центр</a>
+            <a href="#services">Каталог</a>
+            <a href="#about">О компании</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="section hero visible">
+        <div class="container">
+            <h1>Мебель для школ, офисов и общежитий от производителя</h1>
+            <p>Серийная мебель высокого качества по доступным ценам. Собственное производство в Беларуси.</p>
+            <a href="#cta" class="btn">Получить каталог и прайс</a>
+        </div>
+    </section>
+
+    <section id="problems" class="section problems">
+        <div class="container">
+            <h2>Проблемы, с которыми сталкиваются наши клиенты</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Некачественная мебель</h3>
+                    <p>Школы и офисы нуждаются в прочной мебели, которая выдержит ежедневную нагрузку.</p>
+                </div>
+                <div class="card">
+                    <h3>Высокие цены</h3>
+                    <p>Дорогие поставщики не позволяют уложиться в бюджет образовательных учреждений.</p>
+                </div>
+                <div class="card">
+                    <h3>Долгие сроки поставки</h3>
+                    <p>Заказы на мебель часто задерживаются, что мешает планированию.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="section advantages">
+        <div class="container">
+            <h2>Как мы решаем эти проблемы</h2>
+            <div class="grid">
+                <div class="advantage">
+                    <div class="icon">🏭</div>
+                    <h3>Собственное производство</h3>
+                    <p>Полный цикл от проектирования до отгрузки с контролем качества на каждом этапе.</p>
+                </div>
+                <div class="advantage">
+                    <div class="icon">💰</div>
+                    <h3>Гибкие цены</h3>
+                    <p>Оптовые скидки и отсутствие посредников позволяют снизить затраты клиентов.</p>
+                </div>
+                <div class="advantage">
+                    <div class="icon">⏱️</div>
+                    <h3>Быстрая поставка</h3>
+                    <p>Регулярное обновление ассортимента и складские запасы обеспечивают своевременные поставки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section services">
+        <div class="container">
+            <h2>Наша продукция</h2>
+            <div class="grid">
+                <div class="service">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мебель для дома">
+                    <h3>Мебель для дома</h3>
+                    <ul>
+                        <li>Письменные столы</li>
+                        <li>Шкафы</li>
+                        <li>Обеденные столы в стиле Лофт</li>
+                    </ul>
+                </div>
+                <div class="service">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ученическая мебель">
+                    <h3>Ученическая мебель</h3>
+                    <ul>
+                        <li>Столы для школьной столовой</li>
+                        <li>Ученические столы и стулья</li>
+                        <li>Комплекты для классов</li>
+                    </ul>
+                </div>
+                <div class="service">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Офисная мебель">
+                    <h3>Офисная мебель</h3>
+                    <ul>
+                        <li>Письменные столы</li>
+                        <li>Шкафы для документов</li>
+                        <li>Тумбы</li>
+                    </ul>
+                </div>
+                <div class="service">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мебель для общежитий">
+                    <h3>Мебель для общежитий и гостиниц</h3>
+                    <ul>
+                        <li>Кровати</li>
+                        <li>Тумбочки</li>
+                        <li>Шкафы и антресоли</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section stats">
+        <div class="container">
+            <h2>Наши достижения</h2>
+            <div class="grid">
+                <div>
+                    <div class="stat">1000 м²</div>
+                    <p>Производственных помещений</p>
+                </div>
+                <div>
+                    <div class="stat">600 м²</div>
+                    <p>Крытых складских помещений</p>
+                </div>
+                <div>
+                    <div class="stat">2023</div>
+                    <p>Год запуска склада сырья</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2>О компании</h2>
+            <p>ООО «Глубокский мебельный центр» – белорусский производитель и поставщик серийной мебели для общежитий, школ и офисов. Мы производим полный цикл изготовления мебели от проектирования до отгрузки, что позволяет осуществлять поэтапный контроль качества.</p>
+            <p>Обращаем внимание, что по индивидуальным заказам и с физическими лицами предприятие не работает.</p>
+        </div>
+    </section>
+
+    <section id="faq" class="section faq">
+        <div class="container">
+            <h2>Частые вопросы</h2>
+            <div class="question">
+                <h4>Как оформить заказ?</h4>
+                <div class="answer">Свяжитесь с нами по телефону или email, и мы вышлем каталог и прайс-лист.</div>
+            </div>
+            <div class="question">
+                <h4>Какие сроки производства?</h4>
+                <div class="answer">Зависит от объема заказа, обычно 2-4 недели.</div>
+            </div>
+            <div class="question">
+                <h4>Работаете ли с розничными покупателями?</h4>
+                <div class="answer">Нет, мы специализируемся на оптовых поставках для организаций.</div>
+            </div>
+            <div class="question">
+                <h4>Есть ли доставка?</h4>
+                <div class="answer">Да, организуем доставку по Беларуси и за ее пределы.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="section cta">
+        <div class="container">
+            <h2>Готовы к сотрудничеству?</h2>
+            <p>Свяжитесь с нами сегодня и получите выгодное предложение на мебель для вашего учреждения.</p>
+            <div class="contacts">
+                <div class="contact-item">
+                    <h3>Телефон</h3>
+                    <a href="tel:+375296969399">+375 29 696-93-99</a><br>
+                    <a href="tel:+375296840030">+375 29 684-00-30</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:info@1gmc.by">info@1gmc.by</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Адрес</h3>
+                    <p>211790 Витебская обл., Глубокский р-н, Озерецкий с/с, д. Обруб Березвечский, ул. Глубокская, 1а</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Соцсети</h3>
+                    <a href="https://t.me/Glubokskiy_mebelnyi_centr">Telegram</a><br>
+                    <a href="https://instagram.com/1gmc_glubokoe">Instagram</a><br>
+                    <a href="viber://chat?number=%2B375296969399">Viber</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h3>Глубокский Мебельный Центр</h3>
+                    <p>Производитель мебели с 2010 года</p>
+                </div>
+                <div>
+                    <h3>Контакты</h3>
+                    <p>+375 29 696-93-99<br>info@1gmc.by</p>
+                </div>
+                <div>
+                    <h3>Юридическая информация</h3>
+                    <p>УНП 391540875</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="tel:+375296969399" class="btn fixed-cta">Позвонить</a>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelectorAll('.faq .question h4').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
